@@ -21,6 +21,13 @@ Abra o notebook **na raiz deste repositório** e execute as células em ordem. E
 
 ## Projeto DVC na raiz
 
-O remote `local_remote` aponta para `remote_storage/`, uma pasta local ignorada pelo Git, conforme a proposta do laboratório. Portanto, o clone do GitHub contém os ponteiros, o pipeline, o lockfile, o código e as métricas, mas não contém os objetos do cache DVC. Para reconstruir a execução a partir do GitHub, execute o notebook na raiz do clone; ele gera um novo projeto completo em `workspace_wine/` e faz `dvc push` para o remote local desse projeto.
+O remote `local_remote` aponta para `remote_storage/`, uma pasta local ignorada pelo Git, conforme a proposta do laboratório. Para que um clone também consiga recuperar os dados, os nove objetos DVC estão em uma [release do projeto](https://github.com/Rafaela091/aula-05-dvc-lab/releases/tag/dvc-cache-v1). O script verifica o SHA-256 do arquivo antes de restaurar o remote local:
 
-Os commits na raiz registram v1, v2, o primeiro pipeline e o experimento com `n_estimators` alterado de 100 para 200. Nos dois experimentos, `accuracy` e `f1_macro` ficaram em 1,0; por isso `dvc metrics diff HEAD~1` não mostra diferença.
+```bash
+python scripts/restore_remote.py
+dvc pull
+dvc repro
+dvc metrics show
+```
+
+Com isso, o clone recupera `data/wine.csv`, os dados preparados e o modelo correspondentes ao `dvc.lock` da revisão atual. O histórico Git mantém v1, v2, o primeiro pipeline e o experimento com `n_estimators` alterado de 100 para 200. Nos dois experimentos, `accuracy` e `f1_macro` ficaram em 1,0; por isso `dvc metrics diff HEAD~1` não mostra diferença.
