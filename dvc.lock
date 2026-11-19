@@ -35,7 +35,7 @@ stages:
       size: 1281
     params:
       params.yaml:
-        train.n_estimators: 100
+        train.n_estimators: 200
         train.random_state: 42
     outs:
     - path: artifacts/metrics.json
@@ -44,5 +44,5 @@ stages:
       size: 40
     - path: artifacts/model.joblib
       hash: md5
-      md5: 6fd95a0150397f5076a202b37b2a89ab
-      size: 125522
+      md5: f55b73a0f2aa752b5580c35036a43c93
+      size: 252242
