@@ -5,6 +5,7 @@ Notebook executado e projeto Git + DVC para versionamento do dataset Wine.
 ## Entrega
 
 - [Notebook preenchido e executado](Aula%2005%20-%20DVC%20-%20Lab.ipynb), com todas as fases e respostas de reflexão.
+- [PDF de conferência e entrega](Aula%2005%20-%20DVC%20-%20Conferencia%20e%20Entrega.pdf), com os links e o checklist da atividade.
 - `data/wine.csv.dvc`: ponteiro para o dataset Wine; os commits `data: wine.csv v1` e `data: wine.csv v2` registram 178 e 130 amostras.
 - `dvc.yaml` e `dvc.lock`: stages `preparar` e `treinar`, parâmetros, hashes e saídas.
 - `artifacts/metrics.json`: métricas da última execução.
