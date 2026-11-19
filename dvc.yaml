@@ -1,0 +1,27 @@
+stages:
+  preparar:
+    cmd: python src/prepare.py
+    deps:
+      - data/wine.csv
+      - src/prepare.py
+    params:
+      - params.yaml:
+          - prepare.test_size
+          - prepare.random_state
+    outs:
+      - data/prepared/
+
+  treinar:
+    cmd: python src/train.py
+    deps:
+      - data/prepared/
+      - src/train.py
+    params:
+      - params.yaml:
+          - train.n_estimators
+          - train.random_state
+    outs:
+      - artifacts/model.joblib
+    metrics:
+      - artifacts/metrics.json:
+          cache: false
